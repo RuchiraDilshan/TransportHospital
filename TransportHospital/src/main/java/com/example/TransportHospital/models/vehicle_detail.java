@@ -6,13 +6,13 @@ import jakarta.persistence.Id;
 import jakarta.persistence.*;
 
 @Entity
-public class vehicle {
+public class vehicle_detail {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @Column(unique = true, nullable = false)
-    private String vehiclenumber;
+    private String vehicle_number;
 
     @Enumerated(EnumType.STRING)
     private vehicletype type;
@@ -38,8 +38,17 @@ public class vehicle {
         DIESEL
     }
 
-    public vehicle() {
+    public vehicle_detail() {
 
+    }
+
+    public vehicle_detail(Long id, String vehicle_number, vehicletype type, fueltype fuel_type, String make) {
+
+        this.id = id;
+        this.vehicle_number = vehicle_number;
+        this.type = type;
+        this.fuel_type = fuel_type;
+        this.make = make;
     }
 
     public Long getId() {
@@ -50,12 +59,12 @@ public class vehicle {
         this.id = id;
     }
 
-    public String getVehiclenumber() {
-        return vehiclenumber;
+    public String getVehicle_number() {
+        return vehicle_number;
     }
 
-    public void setVehiclenumber(String vehiclenumber) {
-        this.vehiclenumber = vehiclenumber;
+    public void setVehicle_number(String vehicle_number) {
+        this.vehicle_number = vehicle_number;
     }
 
     public vehicletype getType() {
@@ -79,15 +88,6 @@ public class vehicle {
     }
 
     public void setMake(String make) {
-        this.make = make;
-    }
-
-    public vehicle(Long id, String vehiclenumber, vehicletype type, fueltype fuel_type, String make) {
-        super();
-        this.id = id;
-        this.vehiclenumber = vehiclenumber;
-        this.type = type;
-        this.fuel_type = fuel_type;
         this.make = make;
     }
 

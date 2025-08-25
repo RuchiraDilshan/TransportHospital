@@ -3,7 +3,7 @@ package com.example.TransportHospital.models;
 import java.math.BigDecimal;
 import java.time.LocalDate;
 
-import com.example.TransportHospital.models.vehicle.fueltype;
+import com.example.TransportHospital.models.vehicle_detail.fueltype;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
@@ -16,13 +16,13 @@ import jakarta.persistence.PreUpdate;
 import jakarta.persistence.Transient;
 
 @Entity
-public class fuel {
+public class fuel_detail {
     @Id
     private String fuelid;
 
     @ManyToOne
     @JoinColumn(name = "vehiclenumber", referencedColumnName = "vehiclenumber")
-    private vehicle vehicle;
+    private vehicle_detail vehicle;
 
     private LocalDate refilled_date;
     private BigDecimal refilled_quantity;
@@ -30,7 +30,7 @@ public class fuel {
     private BigDecimal fuel_price;
 
     @Enumerated(EnumType.STRING)
-    private vehicle.fueltype fuel_type;
+    private vehicle_detail.fueltype fuel_type;
 
     private BigDecimal odometerreading;
 
@@ -41,11 +41,12 @@ public class fuel {
             this.fuel_type = vehicle.getFuel_type();
     }
 
-    public fuel() {
+    public fuel_detail() {
 
     }
 
-    public fuel(String fuelid, com.example.TransportHospital.models.vehicle vehicle, LocalDate refilled_date,
+    public fuel_detail(String fuelid, com.example.TransportHospital.models.vehicle_detail vehicle,
+            LocalDate refilled_date,
             BigDecimal refilled_quantity, BigDecimal refill_cost, BigDecimal fuel_price, fueltype fuel_type,
             BigDecimal odometerreading) {
 
@@ -67,11 +68,11 @@ public class fuel {
         this.fuelid = fuelid;
     }
 
-    public vehicle getVehicle() {
+    public vehicle_detail getVehicle() {
         return vehicle;
     }
 
-    public void setVehicle(vehicle vehicle) {
+    public void setVehicle(vehicle_detail vehicle) {
         this.vehicle = vehicle;
     }
 
@@ -107,11 +108,11 @@ public class fuel {
         this.fuel_price = fuel_price;
     }
 
-    public vehicle.fueltype getFuel_type() {
+    public vehicle_detail.fueltype getFuel_type() {
         return fuel_type;
     }
 
-    public void setFuel_type(vehicle.fueltype fuel_type) {
+    public void setFuel_type(vehicle_detail.fueltype fuel_type) {
         this.fuel_type = fuel_type;
     }
 
@@ -125,7 +126,7 @@ public class fuel {
 
     @Transient
     public String getVehiclenumber() {
-        return vehicle != null ? vehicle.getVehiclenumber() : null;
+        return vehicle != null ? vehicle.getVehicle_number() : null;
     }
 
 }
