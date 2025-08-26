@@ -48,6 +48,12 @@ public class vehicle_detail {
         }
     }
 
+    public void setVehicle_type(vehicletype type) {
+        this.type = type;
+        if (this.insurance_detail != null)
+            this.insurance_detail.setVehicle_type(type);
+    }
+
     public vehicle_detail() {
 
     }
