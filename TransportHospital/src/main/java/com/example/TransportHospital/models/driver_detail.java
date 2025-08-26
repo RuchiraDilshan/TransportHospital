@@ -2,6 +2,7 @@ package com.example.TransportHospital.models;
 
 import java.time.LocalDate;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
@@ -9,21 +10,26 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 
 @Entity
 public class driver_detail {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long driver_id;
-
+    @ManyToOne
     @JoinColumn(name = "assistant_id", referencedColumnName = "assistant_id", nullable = false)
     private driver_assistant_detail assistant_id;
     private String driver_name;
+
+    @Column(unique = true, nullable = true)
     private String driver_license_number;
     private LocalDate date_of_birth;
 
     @Enumerated(EnumType.STRING)
     private category license_category;
+
+    private LocalDate license_expire_date;
 
     @Enumerated(EnumType.STRING)
     private validitystatus validity_status;
@@ -36,7 +42,7 @@ public class driver_detail {
 
     public enum validitystatus {
         VALID,
-        INVALID
+        EXPIRED
     }
 
     public driver_detail() {
@@ -45,6 +51,7 @@ public class driver_detail {
 
     public driver_detail(Long driver_id, driver_assistant_detail assistant_id, String driver_name,
             String driver_license_number, LocalDate date_of_birth, category license_category,
+            LocalDate license_expire_date,
             validitystatus validity_status) {
         super();
         this.driver_id = driver_id;
@@ -53,7 +60,12 @@ public class driver_detail {
         this.driver_license_number = driver_license_number;
         this.date_of_birth = date_of_birth;
         this.license_category = license_category;
+        this.license_expire_date = license_expire_date;
         this.validity_status = validity_status;
+    }
+
+    private boolean isExpired() {
+        return license_expire_date != null && license_expire_date.isBefore(LocalDate.now());
     }
 
     public Long getDriver_id() {
@@ -102,14 +114,15 @@ public class driver_detail {
 
     public void setLicense_category(category license_category) {
         this.license_category = license_category;
+
     }
 
     public validitystatus getValidity_status() {
-        return validity_status;
+        return isExpired() ? validitystatus.EXPIRED : validitystatus.VALID;
     }
 
-    public void setValidity_status(validitystatus validity_status) {
-        this.validity_status = validity_status;
+    public void setValidity_status(validitystatus ignored) {
+
     }
 
 }
