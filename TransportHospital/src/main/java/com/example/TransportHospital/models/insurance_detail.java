@@ -35,6 +35,15 @@ public class insurance_detail {
 
 	private BigDecimal insurance_cost;
 
+	private LocalDate lisence_date_from;
+
+	private LocalDate lisence_date_to;
+
+	private BigDecimal lisence_cost;
+
+	@Enumerated(EnumType.STRING)
+	private insurancestatus lisence_status;
+
 	@Enumerated(EnumType.STRING)
 	private insurancestatus insurance_status;
 
@@ -62,12 +71,18 @@ public class insurance_detail {
 
 	}
 
+	private boolean isExpiredLisence() {
+		return lisence_date_to != null && lisence_date_to.isBefore(LocalDate.now());
+	}
+
 	public insurance_detail() {
 		super();
 	}
 
 	public insurance_detail(Long insurance_id, vehicle_detail vehicle_number, vehicletype vehicle_type,
-			LocalDate date_from, LocalDate date_valid_to, BigDecimal insurance_cost, insurancestatus insurance_status) {
+			LocalDate date_from, LocalDate date_valid_to, BigDecimal insurance_cost, insurancestatus insurance_status,
+			LocalDate lisence_date_from, LocalDate lisence_date_to, BigDecimal lisence_cost,
+			insurancestatus lisence_status) {
 		super();
 		this.insurance_id = insurance_id;
 		this.vehicle_number = vehicle_number;
@@ -76,6 +91,10 @@ public class insurance_detail {
 		this.Date_valid_to = date_valid_to;
 		this.insurance_cost = insurance_cost;
 		this.insurance_status = insurance_status;
+		this.lisence_date_from = lisence_date_from;
+		this.lisence_date_to = lisence_date_to;
+		this.lisence_cost = lisence_cost;
+		this.lisence_status = lisence_status;
 	}
 
 	public Long getInsurance_id() {
@@ -132,6 +151,34 @@ public class insurance_detail {
 
 	public void setInsurance_status(insurancestatus ignored) {
 
+	}
+
+	public LocalDate getLisence_date_from() {
+		return lisence_date_from;
+	}
+
+	public void setLisence_date_from(LocalDate lisence_date_from) {
+		this.lisence_date_from = lisence_date_from;
+	}
+
+	public LocalDate getLisence_date_to() {
+		return lisence_date_to;
+	}
+
+	public void setLisence_date_to(LocalDate lisence_date_to) {
+		this.lisence_date_to = lisence_date_to;
+	}
+
+	public BigDecimal getLisence_cost() {
+		return lisence_cost;
+	}
+
+	public void setLisence_cost(BigDecimal lisence_cost) {
+		this.lisence_cost = lisence_cost;
+	}
+
+	public insurancestatus getLisence_status() {
+		return isExpiredLisence() ? insurancestatus.EXPIRED : insurancestatus.VALID;
 	}
 
 	@Transient
