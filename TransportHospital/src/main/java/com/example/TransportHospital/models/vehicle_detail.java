@@ -1,8 +1,5 @@
 package com.example.TransportHospital.models;
 
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
 import jakarta.persistence.*;
 
 @Entity
@@ -22,6 +19,9 @@ public class vehicle_detail {
 
     private String make;
 
+    @OneToOne(mappedBy = "vehicle", cascade = CascadeType.ALL, orphanRemoval = true)
+    private insurance_detail insurance_detail;
+
     public enum vehicletype {
         AMBULANCE,
         VAN,
@@ -36,6 +36,16 @@ public class vehicle_detail {
     public enum fueltype {
         PETROL,
         DIESEL
+    }
+
+    @PrePersist
+    private void autoCreateInsurance() {
+        if (this.insurance_detail == null) {
+            insurance_detail ins = new insurance_detail();
+            ins.setVehicle_number(this);
+            ins.setVehicle_type(this.type);
+            this.insurance_detail = ins;
+        }
     }
 
     public vehicle_detail() {
@@ -89,6 +99,18 @@ public class vehicle_detail {
 
     public void setMake(String make) {
         this.make = make;
+    }
+
+    public insurance_detail getInsurance() {
+        return insurance_detail;
+    }
+
+    public void setInsurance(insurance_detail insurance) {
+        this.insurance_detail = insurance;
+        if (insurance != null) {
+            insurance.setVehicle_number(this);
+            insurance.setVehicle_type(this.type);
+        }
     }
 
 }
