@@ -14,13 +14,16 @@ public class vehicle_detail {
     @Enumerated(EnumType.STRING)
     private vehicletype type;
 
+    private String make;
+
     @Enumerated(EnumType.STRING)
     private fueltype fuel_type;
 
-    private String make;
-
     @OneToOne(mappedBy = "vehicle", cascade = CascadeType.ALL, orphanRemoval = true)
     private insurance_detail insurance_detail;
+
+    @JoinColumn(name = "driver_id", referencedColumnName = "driver_id", nullable = false)
+    private driver_detail driver_id;
 
     public enum vehicletype {
         AMBULANCE,
