@@ -38,7 +38,7 @@ public class status_details {
     @PreUpdate
     private void syncVehicleType() {
         if (vehicle_number != null)
-            this.vehicle_type = vehicle_number.getType();
+            this.vehicle_type = vehicle_number.getVehicle_type();
     }
 
     public status_details() {

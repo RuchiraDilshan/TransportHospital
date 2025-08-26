@@ -12,7 +12,7 @@ public class vehicle_detail {
     private String vehicle_number;
 
     @Enumerated(EnumType.STRING)
-    private vehicletype type;
+    private vehicletype vehicle_type;
 
     private String make;
 
@@ -22,6 +22,7 @@ public class vehicle_detail {
     @OneToOne(mappedBy = "vehicle", cascade = CascadeType.ALL, orphanRemoval = true)
     private insurance_detail insurance_detail;
 
+    @ManyToOne
     @JoinColumn(name = "driver_id", referencedColumnName = "driver_id", nullable = false)
     private driver_detail driver_id;
 
@@ -46,26 +47,26 @@ public class vehicle_detail {
         if (this.insurance_detail == null) {
             insurance_detail ins = new insurance_detail();
             ins.setVehicle_number(this);
-            ins.setVehicle_type(this.type);
+            ins.setVehicle_type(this.vehicle_type);
             this.insurance_detail = ins;
         }
     }
 
-    public void setVehicle_type(vehicletype type) {
-        this.type = type;
+    public void setvehicle_type(vehicletype vehicle_type) {
+        this.vehicle_type = vehicle_type;
         if (this.insurance_detail != null)
-            this.insurance_detail.setVehicle_type(type);
+            this.insurance_detail.setVehicle_type(vehicle_type);
     }
 
     public vehicle_detail() {
 
     }
 
-    public vehicle_detail(Long id, String vehicle_number, vehicletype type, fueltype fuel_type, String make) {
+    public vehicle_detail(Long id, String vehicle_number, vehicletype vehicle_type, fueltype fuel_type, String make) {
 
         this.id = id;
         this.vehicle_number = vehicle_number;
-        this.type = type;
+        this.vehicle_type = vehicle_type;
         this.fuel_type = fuel_type;
         this.make = make;
     }
@@ -86,12 +87,12 @@ public class vehicle_detail {
         this.vehicle_number = vehicle_number;
     }
 
-    public vehicletype getType() {
-        return type;
+    public vehicletype getVehicle_type() {
+        return vehicle_type;
     }
 
-    public void setType(vehicletype type) {
-        this.type = type;
+    public void setVehicle_type(vehicletype vehicle_type) {
+        this.vehicle_type = vehicle_type;
     }
 
     public fueltype getFuel_type() {
@@ -118,7 +119,7 @@ public class vehicle_detail {
         this.insurance_detail = insurance;
         if (insurance != null) {
             insurance.setVehicle_number(this);
-            insurance.setVehicle_type(this.type);
+            insurance.setVehicle_type(this.vehicle_type);
         }
     }
 

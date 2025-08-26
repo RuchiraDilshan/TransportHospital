@@ -21,8 +21,8 @@ public class fuel_detail {
     private String fuelid;
 
     @ManyToOne
-    @JoinColumn(name = "vehiclenumber", referencedColumnName = "vehiclenumber")
-    private vehicle_detail vehicle;
+    @JoinColumn(name = "vehicle_number", referencedColumnName = "vehicle_number")
+    private vehicle_detail vehicle_number;
 
     private LocalDate refilled_date;
     private BigDecimal refilled_quantity;
@@ -37,8 +37,8 @@ public class fuel_detail {
     @PrePersist
     @PreUpdate
     private void syncFuelType() {
-        if (vehicle != null)
-            this.fuel_type = vehicle.getFuel_type();
+        if (vehicle_number != null)
+            this.fuel_type = vehicle_number.getFuel_type();
     }
 
     public fuel_detail() {
@@ -51,7 +51,7 @@ public class fuel_detail {
             BigDecimal odometerreading) {
 
         this.fuelid = fuelid;
-        this.vehicle = vehicle;
+        this.vehicle_number = vehicle;
         this.refilled_date = refilled_date;
         this.refilled_quantity = refilled_quantity;
         this.refill_cost = refill_cost;
@@ -68,12 +68,12 @@ public class fuel_detail {
         this.fuelid = fuelid;
     }
 
-    public vehicle_detail getVehicle() {
-        return vehicle;
+    public vehicle_detail getVehicle_number() {
+        return vehicle_number;
     }
 
-    public void setVehicle(vehicle_detail vehicle) {
-        this.vehicle = vehicle;
+    public void setVehicle(vehicle_detail vehicle_number) {
+        this.vehicle_number = vehicle_number;
     }
 
     public LocalDate getRefilled_date() {
@@ -126,7 +126,7 @@ public class fuel_detail {
 
     @Transient
     public String getVehiclenumber() {
-        return vehicle != null ? vehicle.getVehicle_number() : null;
+        return vehicle_number != null ? vehicle_number.getVehicle_number() : null;
     }
 
 }

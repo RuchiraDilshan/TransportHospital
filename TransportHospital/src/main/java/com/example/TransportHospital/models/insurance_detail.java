@@ -62,7 +62,7 @@ public class insurance_detail {
 	@PreUpdate
 	private void syncAndCompuute() {
 		if (vehicle_number != null)
-			this.vehicle_type = vehicle_number.getType();
+			this.vehicle_type = vehicle_number.getVehicle_type();
 
 	}
 
