@@ -12,6 +12,7 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
+import jakarta.persistence.OneToOne;
 import jakarta.persistence.PrePersist;
 import jakarta.persistence.PreUpdate;
 import jakarta.persistence.Transient;
@@ -36,6 +37,10 @@ public class insurance_detail {
 
 	@Enumerated(EnumType.STRING)
 	private insurancestatus insurance_status;
+
+	@OneToOne
+	@JoinColumn(name = "vehicle_id", referencedColumnName = "id", nullable = false, unique = true)
+	private vehicle_detail vehicle;
 
 	public enum insurancestatus {
 
