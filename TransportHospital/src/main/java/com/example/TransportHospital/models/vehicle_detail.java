@@ -1,5 +1,7 @@
 package com.example.TransportHospital.models;
 
+import java.util.List;
+
 import jakarta.persistence.*;
 
 @Entity
@@ -57,6 +59,21 @@ public class vehicle_detail {
         if (this.insurance_detail != null)
             this.insurance_detail.setVehicle_type(vehicle_type);
     }
+
+    @OneToMany(mappedBy = "vehicle_number", cascade = CascadeType.ALL)
+    private List<fuel_detail> fuel_detail;
+
+    @OneToMany(mappedBy = "vehicle_number", cascade = CascadeType.ALL)
+    private List<service_detail> service_details;
+
+    @OneToMany(mappedBy = "vehicle_number", cascade = CascadeType.ALL)
+    private List<repair_detail> repair_details;
+
+    @OneToOne(mappedBy = "vehicle_number")
+    private status_detail status_details;
+
+    @OneToMany(mappedBy = "vehicle_number", cascade = CascadeType.ALL)
+    private List<image_detail> image_detail;
 
     public vehicle_detail() {
 

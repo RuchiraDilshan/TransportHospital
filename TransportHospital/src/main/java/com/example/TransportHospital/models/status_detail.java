@@ -14,13 +14,13 @@ import jakarta.persistence.PrePersist;
 import jakarta.persistence.PreUpdate;
 
 @Entity
-public class status_details {
+public class status_detail {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long status_id;
 
     @ManyToOne
-    @JoinColumn(name = "vehicle_number", referencedColumnName = "vehicel_number", nullable = false)
+    @JoinColumn(name = "vehicle_number", referencedColumnName = "vehicle_number", nullable = false)
     private vehicle_detail vehicle_number;
 
     @Enumerated(EnumType.STRING)
@@ -41,11 +41,11 @@ public class status_details {
             this.vehicle_type = vehicle_number.getVehicle_type();
     }
 
-    public status_details() {
+    public status_detail() {
         super();
     }
 
-    public status_details(Long status_id, vehicle_detail vehicle_number, vehicletype vehicle_type,
+    public status_detail(Long status_id, vehicle_detail vehicle_number, vehicletype vehicle_type,
             vehiclestatus vehicle_status) {
         super();
         this.status_id = status_id;
