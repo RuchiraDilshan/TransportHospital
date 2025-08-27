@@ -31,7 +31,7 @@ public class insurance_detail {
 
 	private LocalDate date_from;
 
-	private LocalDate Date_valid_to;
+	private LocalDate date_valid_to;
 
 	private BigDecimal insurance_cost;
 
@@ -67,7 +67,7 @@ public class insurance_detail {
 	}
 
 	private boolean isExpired() {
-		return Date_valid_to != null && Date_valid_to.isBefore(LocalDate.now());
+		return date_valid_to != null && date_valid_to.isBefore(LocalDate.now());
 
 	}
 
@@ -88,7 +88,7 @@ public class insurance_detail {
 		this.vehicle_number = vehicle_number;
 		this.vehicle_type = vehicle_type;
 		this.date_from = date_from;
-		this.Date_valid_to = date_valid_to;
+		this.date_valid_to = date_valid_to;
 		this.insurance_cost = insurance_cost;
 		this.insurance_status = insurance_status;
 		this.lisence_date_from = lisence_date_from;
@@ -130,11 +130,11 @@ public class insurance_detail {
 	}
 
 	public LocalDate getDate_valid_to() {
-		return Date_valid_to;
+		return date_valid_to;
 	}
 
 	public void setDate_valid_to(LocalDate date_valid_to) {
-		Date_valid_to = date_valid_to;
+		this.date_valid_to = date_valid_to;
 	}
 
 	public BigDecimal getInsurance_cost() {

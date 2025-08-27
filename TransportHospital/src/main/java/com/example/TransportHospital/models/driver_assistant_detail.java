@@ -10,47 +10,47 @@ import jakarta.persistence.Id;
 public class driver_assistant_detail {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long assistant_id;
+    private Long driver_assistant_id;
 
-    private String assistant_name;
-    private String contact_number;
+    private String driver_assistant_name;
 
     @Column(length = 10, nullable = false)
-    private String assistant_contact_number;
+    private String driver_assistant_contact_number;
 
     public driver_assistant_detail() {
         super();
     }
 
-    public driver_assistant_detail(Long assistant_id, String assistant_name, String contact_number) {
+    public driver_assistant_detail(Long driver_assistant_id, String driver_assistant_name,
+            String driver_assistant_contact_number) {
         super();
-        this.assistant_id = assistant_id;
-        this.assistant_name = assistant_name;
-        this.contact_number = contact_number;
+        this.driver_assistant_id = driver_assistant_id;
+        this.driver_assistant_name = driver_assistant_name;
+        this.driver_assistant_contact_number = driver_assistant_contact_number;
     }
 
-    public Long getAssistant_id() {
-        return assistant_id;
+    public Long getDriver_assistant_id() {
+        return driver_assistant_id;
     }
 
-    public void setAssistant_id(Long assistant_id) {
-        this.assistant_id = assistant_id;
+    public void setDriver_assistant_id(Long driver_assistant_id) {
+        this.driver_assistant_id = driver_assistant_id;
     }
 
-    public String getAssistant_name() {
-        return assistant_name;
+    public String getDriver_assistant_name() {
+        return driver_assistant_name;
     }
 
-    public void setAssistant_name(String assistant_name) {
-        this.assistant_name = assistant_name;
+    public void setDriver_assistant_name(String driver_assistant_name) {
+        this.driver_assistant_name = driver_assistant_name;
     }
 
-    public String getContact_number() {
-        return contact_number;
+    public String getDriver_assistant_contact_number() {
+        return driver_assistant_contact_number;
     }
 
-    public void setContact_number(String contact_number) {
-        this.contact_number = contact_number;
+    public void setDriver_assistant_contact_number(String driver_assistant_contact_number) {
+        this.driver_assistant_contact_number = driver_assistant_contact_number;
     }
 
 }

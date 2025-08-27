@@ -18,8 +18,9 @@ public class driver_detail {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long driver_id;
     @ManyToOne
-    @JoinColumn(name = "assistant_id", referencedColumnName = "assistant_id", nullable = false)
-    private driver_assistant_detail assistant_id;
+    @JoinColumn(name = "driver_assistant_id", referencedColumnName = "driver_assistant_id", nullable = false)
+    private driver_assistant_detail driver_assistant_id;
+
     private String driver_name;
 
     @Column(unique = true, nullable = true)
@@ -49,13 +50,13 @@ public class driver_detail {
         super();
     }
 
-    public driver_detail(Long driver_id, driver_assistant_detail assistant_id, String driver_name,
+    public driver_detail(Long driver_id, driver_assistant_detail driver_assistant_id, String driver_name,
             String driver_license_number, LocalDate date_of_birth, category license_category,
             LocalDate license_expire_date,
             validitystatus validity_status) {
         super();
         this.driver_id = driver_id;
-        this.assistant_id = assistant_id;
+        this.driver_assistant_id = driver_assistant_id;
         this.driver_name = driver_name;
         this.driver_license_number = driver_license_number;
         this.date_of_birth = date_of_birth;
@@ -76,12 +77,12 @@ public class driver_detail {
         this.driver_id = driver_id;
     }
 
-    public driver_assistant_detail getAssistant_id() {
-        return assistant_id;
+    public driver_assistant_detail getDriver_assistant_id() {
+        return driver_assistant_id;
     }
 
-    public void setAssistant_id(driver_assistant_detail assistant_id) {
-        this.assistant_id = assistant_id;
+    public void setDriver_assistant_id(driver_assistant_detail driver_assistant_id) {
+        this.driver_assistant_id = driver_assistant_id;
     }
 
     public String getDriver_name() {

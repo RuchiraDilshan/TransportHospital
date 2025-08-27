@@ -27,7 +27,7 @@ public class status_details {
     private vehicle_detail.vehicletype vehicle_type;
 
     @Enumerated(EnumType.STRING)
-    private vehiclestatus status;
+    private vehiclestatus vehicle_status;
 
     public enum vehiclestatus {
         RUNNING,
@@ -46,12 +46,12 @@ public class status_details {
     }
 
     public status_details(Long status_id, vehicle_detail vehicle_number, vehicletype vehicle_type,
-            vehiclestatus status) {
+            vehiclestatus vehicle_status) {
         super();
         this.status_id = status_id;
         this.vehicle_number = vehicle_number;
         this.vehicle_type = vehicle_type;
-        this.status = status;
+        this.vehicle_status = vehicle_status;
     }
 
     public Long getStatus_id() {
@@ -79,11 +79,11 @@ public class status_details {
     }
 
     public vehiclestatus getStatus() {
-        return status;
+        return vehicle_status;
     }
 
-    public void setStatus(vehiclestatus status) {
-        this.status = status;
+    public void setStatus(vehiclestatus vehicle_status) {
+        this.vehicle_status = vehicle_status;
     }
 
 }

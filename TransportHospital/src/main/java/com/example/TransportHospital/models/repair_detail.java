@@ -29,7 +29,7 @@ public class repair_detail {
     private vehicle_detail.vehicletype vehicle_type;
 
     private LocalDate repair_date;
-    private BigDecimal Milageat_repair;
+    private BigDecimal mileageat_repair;
     private BigDecimal repair_cost;
     private String repair_description;
     private String service_provider;
@@ -41,14 +41,14 @@ public class repair_detail {
     }
 
     public repair_detail(Long repair_id, vehicle_detail vehicle_number, vehicletype vehicle_type, LocalDate repair_date,
-            BigDecimal milageat_repair, BigDecimal repair_cost, String repair_description, String service_provider,
+            BigDecimal mileageat_repair, BigDecimal repair_cost, String repair_description, String service_provider,
             String invoice_number, String remarks) {
         super();
         this.repair_id = repair_id;
         this.vehicle_number = vehicle_number;
         this.vehicle_type = vehicle_type;
         this.repair_date = repair_date;
-        this.Milageat_repair = milageat_repair;
+        this.mileageat_repair = mileageat_repair;
         this.repair_cost = repair_cost;
         this.repair_description = repair_description;
         this.service_provider = service_provider;
@@ -88,12 +88,12 @@ public class repair_detail {
         this.repair_date = repair_date;
     }
 
-    public BigDecimal getMilageat_repair() {
-        return Milageat_repair;
+    public BigDecimal getMileageat_repair() {
+        return mileageat_repair;
     }
 
-    public void setMilageat_repair(BigDecimal milageat_repair) {
-        Milageat_repair = milageat_repair;
+    public void setMileageat_repair(BigDecimal mileageat_repair) {
+        this.mileageat_repair = mileageat_repair;
     }
 
     public BigDecimal getRepair_cost() {

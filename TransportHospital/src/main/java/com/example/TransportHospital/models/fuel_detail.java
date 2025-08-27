@@ -32,7 +32,7 @@ public class fuel_detail {
     @Enumerated(EnumType.STRING)
     private vehicle_detail.fueltype fuel_type;
 
-    private BigDecimal odometerreading;
+    private BigDecimal odometer_reading;
 
     @PrePersist
     @PreUpdate
@@ -48,7 +48,7 @@ public class fuel_detail {
     public fuel_detail(String fuelid, com.example.TransportHospital.models.vehicle_detail vehicle,
             LocalDate refilled_date,
             BigDecimal refilled_quantity, BigDecimal refill_cost, BigDecimal fuel_price, fueltype fuel_type,
-            BigDecimal odometerreading) {
+            BigDecimal odometer_reading) {
 
         this.fuelid = fuelid;
         this.vehicle_number = vehicle;
@@ -57,7 +57,7 @@ public class fuel_detail {
         this.refill_cost = refill_cost;
         this.fuel_price = fuel_price;
         this.fuel_type = fuel_type;
-        this.odometerreading = odometerreading;
+        this.odometer_reading = odometer_reading;
     }
 
     public String getFuelid() {
@@ -116,12 +116,12 @@ public class fuel_detail {
         this.fuel_type = fuel_type;
     }
 
-    public BigDecimal getOdometerreading() {
-        return odometerreading;
+    public BigDecimal getOdometer_reading() {
+        return odometer_reading;
     }
 
-    public void setOdometerreading(BigDecimal odometerreading) {
-        this.odometerreading = odometerreading;
+    public void setOdometer_reading(BigDecimal odometer_reading) {
+        this.odometer_reading = odometer_reading;
     }
 
     @Transient
