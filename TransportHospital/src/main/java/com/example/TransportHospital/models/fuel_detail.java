@@ -72,7 +72,7 @@ public class fuel_detail {
         return vehicle_number;
     }
 
-    public void setVehicle(vehicle_detail vehicle_number) {
+    public void setVehicle_detail(vehicle_detail vehicle_number) {
         this.vehicle_number = vehicle_number;
     }
 

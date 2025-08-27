@@ -5,6 +5,7 @@ import java.time.LocalDate;
 
 import com.example.TransportHospital.models.vehicle_detail.vehicletype;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
@@ -23,8 +24,9 @@ public class insurance_detail {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long insurance_id;
 
-	@JoinColumn(name = "vehicle_number", referencedColumnName = "vehicle_number", nullable = false)
-	private vehicle_detail vehicle_number;
+	@OneToOne
+	@JoinColumn(name = "vehicle_id", referencedColumnName = "id", nullable = false)
+	private vehicle_detail vehicle_id;
 
 	@Enumerated(EnumType.STRING)
 	private vehicle_detail.vehicletype vehicle_type;
@@ -47,9 +49,8 @@ public class insurance_detail {
 	@Enumerated(EnumType.STRING)
 	private insurancestatus insurance_status;
 
-	@OneToOne
-	@JoinColumn(name = "vehicle_id", referencedColumnName = "id", nullable = false, unique = true)
-	private vehicle_detail vehicle;
+	@Column(nullable = false)
+	private String vehicle_number;
 
 	public enum insurancestatus {
 
@@ -61,8 +62,8 @@ public class insurance_detail {
 	@PrePersist
 	@PreUpdate
 	private void syncAndCompuute() {
-		if (vehicle_number != null)
-			this.vehicle_type = vehicle_number.getVehicle_type();
+		if (vehicle_id != null)
+			this.vehicle_type = vehicle_id.getVehicle_type();
 
 	}
 
@@ -79,13 +80,13 @@ public class insurance_detail {
 		super();
 	}
 
-	public insurance_detail(Long insurance_id, vehicle_detail vehicle_number, vehicletype vehicle_type,
+	public insurance_detail(Long insurance_id, vehicle_detail vehicle_id, vehicletype vehicle_type,
 			LocalDate date_from, LocalDate date_valid_to, BigDecimal insurance_cost, insurancestatus insurance_status,
 			LocalDate lisence_date_from, LocalDate lisence_date_to, BigDecimal lisence_cost,
 			insurancestatus lisence_status) {
 		super();
 		this.insurance_id = insurance_id;
-		this.vehicle_number = vehicle_number;
+		this.vehicle_id = vehicle_id;
 		this.vehicle_type = vehicle_type;
 		this.date_from = date_from;
 		this.date_valid_to = date_valid_to;
@@ -105,12 +106,12 @@ public class insurance_detail {
 		this.insurance_id = insurance_id;
 	}
 
-	public vehicle_detail getvehicle_number() {
-		return vehicle_number;
+	public vehicle_detail getVehicle_id() {
+		return vehicle_id;
 	}
 
-	public void setVehicle_number(vehicle_detail vehicle_number) {
-		this.vehicle_number = vehicle_number;
+	public void setVehicle_id(vehicle_detail vehicle_id) {
+		this.vehicle_id = vehicle_id;
 	}
 
 	public vehicle_detail.vehicletype getVehicle_type() {
@@ -183,7 +184,7 @@ public class insurance_detail {
 
 	@Transient
 	public String getVehicle_number() {
-		return vehicle_number != null ? vehicle_number.getVehicle_number() : null;
+		return vehicle_id != null ? vehicle_id.getVehicle_number() : null;
 	}
 
 }

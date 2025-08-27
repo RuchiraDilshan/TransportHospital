@@ -21,7 +21,7 @@ public class vehicle_detail {
     @Enumerated(EnumType.STRING)
     private fueltype fuel_type;
 
-    @OneToOne(mappedBy = "vehicle", cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToOne(mappedBy = "vehicle_id", cascade = CascadeType.ALL, orphanRemoval = true)
     private insurance_detail insurance_detail;
 
     @ManyToOne
@@ -48,7 +48,7 @@ public class vehicle_detail {
     private void autoCreateInsurance() {
         if (this.insurance_detail == null) {
             insurance_detail ins = new insurance_detail();
-            ins.setVehicle_number(this);
+            ins.setVehicle_id(this);
             ins.setVehicle_type(this.vehicle_type);
             this.insurance_detail = ins;
         }
@@ -64,13 +64,13 @@ public class vehicle_detail {
     private List<fuel_detail> fuel_detail;
 
     @OneToMany(mappedBy = "vehicle_number", cascade = CascadeType.ALL)
-    private List<service_detail> service_details;
+    private List<service_detail> service_detail;
 
     @OneToMany(mappedBy = "vehicle_number", cascade = CascadeType.ALL)
-    private List<repair_detail> repair_details;
+    private List<repair_detail> repair_detail;
 
     @OneToOne(mappedBy = "vehicle_number")
-    private status_detail status_details;
+    private status_detail status_detail;
 
     @OneToMany(mappedBy = "vehicle_number", cascade = CascadeType.ALL)
     private List<image_detail> image_detail;
@@ -135,7 +135,7 @@ public class vehicle_detail {
     public void setInsurance(insurance_detail insurance) {
         this.insurance_detail = insurance;
         if (insurance != null) {
-            insurance.setVehicle_number(this);
+            insurance.setVehicle_id(this);
             insurance.setVehicle_type(this.vehicle_type);
         }
     }

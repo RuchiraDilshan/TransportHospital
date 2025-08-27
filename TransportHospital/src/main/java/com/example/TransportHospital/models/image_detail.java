@@ -9,6 +9,7 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.PrePersist;
 import jakarta.persistence.PreUpdate;
 
@@ -18,6 +19,7 @@ public class image_detail {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long image_id;
 
+	@ManyToOne
 	@JoinColumn(name = "vehicle_number", referencedColumnName = "vehicle_number", nullable = false)
 	private vehicle_detail vehicle_number;
 

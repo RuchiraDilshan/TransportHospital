@@ -20,7 +20,7 @@ public class service_detail {
     private String service_id;
 
     @ManyToOne
-    @JoinColumn(name = "vehicle_number", referencedColumnName = "vehiclenumber", nullable = false)
+    @JoinColumn(name = "vehicle_number", referencedColumnName = "vehicle_number", nullable = false)
     private vehicle_detail vehicle_number;
 
     @Enumerated(EnumType.STRING)
