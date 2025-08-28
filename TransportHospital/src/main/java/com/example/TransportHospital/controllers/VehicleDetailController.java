@@ -6,24 +6,24 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.example.TransportHospital.models.vehicle_detail;
-import com.example.TransportHospital.service.vehicle_detail_service;
+import com.example.TransportHospital.models.VehicleDetail;
+import com.example.TransportHospital.service.VehicleDetailService;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 
 @RestController
 @RequestMapping("/api/vehicles")
-public class vehicle_detail_controller {
+public class VehicleDetailController {
 
-    private final vehicle_detail_service vehicleDetailService;
+    private final VehicleDetailService vehicleDetailService;
 
-    public vehicle_detail_controller(vehicle_detail_service vehicleDetailService) {
+    public VehicleDetailController(VehicleDetailService vehicleDetailService) {
         this.vehicleDetailService = vehicleDetailService;
     }
 
     @GetMapping("/by_number/{vehicle_number}")
-    public ResponseEntity<vehicle_detail> getVehicleByNumber(@PathVariable String vehicle_number) {
-        vehicle_detail vehicle = vehicleDetailService.getVehicleByNumber(vehicle_number);
+    public ResponseEntity<VehicleDetail> getVehicleByNumber(@PathVariable String vehicle_number) {
+        VehicleDetail vehicle = vehicleDetailService.getVehicleByNumber(vehicle_number);
         if (vehicle == null) {
             return ResponseEntity.notFound().build();
         }
@@ -31,7 +31,7 @@ public class vehicle_detail_controller {
     }
 
     @PostMapping
-    public vehicle_detail addVehicle_detail(@RequestBody vehicle_detail vehicle) {
+    public VehicleDetail addVehicleDetail(@RequestBody VehicleDetail vehicle) {
         return vehicleDetailService.saveVehicle(vehicle);
     }
 

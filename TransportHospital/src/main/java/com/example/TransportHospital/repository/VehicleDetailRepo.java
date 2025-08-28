@@ -1,0 +1,15 @@
+package com.example.TransportHospital.repository;
+
+import java.util.Optional;
+
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
+
+import com.example.TransportHospital.models.VehicleDetail;
+
+@Repository
+public interface VehicleDetailRepo extends JpaRepository<VehicleDetail, Long> {
+
+    Optional<VehicleDetail> findByVehiclenumber(String vehicle_number);
+
+}
