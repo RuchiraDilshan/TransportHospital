@@ -25,7 +25,7 @@ public class insurance_detail {
 	private Long insurance_id;
 
 	@OneToOne
-	@JoinColumn(name = "vehicle_id", referencedColumnName = "id", nullable = false)
+	@JoinColumn(name = "vehicle_id", referencedColumnName = "vehicle_id", nullable = false)
 	private vehicle_detail vehicle_id;
 
 	@Enumerated(EnumType.STRING)

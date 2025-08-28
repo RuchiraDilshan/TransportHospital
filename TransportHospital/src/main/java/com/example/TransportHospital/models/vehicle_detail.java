@@ -8,7 +8,7 @@ import jakarta.persistence.*;
 public class vehicle_detail {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private Long vehicle_id;
 
     @Column(unique = true, nullable = false)
     private String vehicle_number;
@@ -79,21 +79,22 @@ public class vehicle_detail {
 
     }
 
-    public vehicle_detail(Long id, String vehicle_number, vehicletype vehicle_type, fueltype fuel_type, String make) {
+    public vehicle_detail(Long vehicle_id, String vehicle_number, vehicletype vehicle_type, fueltype fuel_type,
+            String make) {
 
-        this.id = id;
+        this.vehicle_id = vehicle_id;
         this.vehicle_number = vehicle_number;
         this.vehicle_type = vehicle_type;
         this.fuel_type = fuel_type;
         this.make = make;
     }
 
-    public Long getId() {
-        return id;
+    public Long getVehicle_id() {
+        return vehicle_id;
     }
 
-    public void setId(Long id) {
-        this.id = id;
+    public void setVehicle_id(Long vehicle_id) {
+        this.vehicle_id = vehicle_id;
     }
 
     public String getVehicle_number() {
