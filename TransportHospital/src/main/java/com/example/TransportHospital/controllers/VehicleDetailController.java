@@ -21,9 +21,18 @@ public class VehicleDetailController {
         this.vehicleDetailService = vehicleDetailService;
     }
 
-    @GetMapping("/by_number/{vehicle_number}")
-    public ResponseEntity<VehicleDetail> getVehicleByNumber(@PathVariable String vehicle_number) {
-        VehicleDetail vehicle = vehicleDetailService.getVehicleByNumber(vehicle_number);
+    @GetMapping("/{vehiclenumber}")
+    public ResponseEntity<VehicleDetail> getVehicleByNumber(@PathVariable String vehiclenumber) {
+        VehicleDetail vehicle = vehicleDetailService.getVehicleByNumber(vehiclenumber);
+        if (vehicle == null) {
+            return ResponseEntity.notFound().build();
+        }
+        return ResponseEntity.ok(vehicle);
+    }
+
+    @GetMapping("/{vehicleid}")
+    public ResponseEntity<VehicleDetail> getVehicleById(@PathVariable Long vehicleid) {
+        VehicleDetail vehicle = vehicleDetailService.getVehicleById(vehicleid);
         if (vehicle == null) {
             return ResponseEntity.notFound().build();
         }

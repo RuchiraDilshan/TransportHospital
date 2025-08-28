@@ -10,6 +10,8 @@ import com.example.TransportHospital.models.VehicleDetail;
 @Repository
 public interface VehicleDetailRepo extends JpaRepository<VehicleDetail, Long> {
 
-    Optional<VehicleDetail> findByVehiclenumber(String vehicle_number);
+    Optional<VehicleDetail> findByVehiclenumber(String vehiclenumber);
+
+    Optional<VehicleDetail> findByVehicleid(Long vehicleid);
 
 }

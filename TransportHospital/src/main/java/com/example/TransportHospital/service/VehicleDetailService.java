@@ -14,8 +14,12 @@ public class VehicleDetailService {
         this.vehicleDetailRepository = vehicleDetailRepository;
     }
 
-    public VehicleDetail getVehicleByNumber(String vehicle_number) {
-        return vehicleDetailRepository.findByVehiclenumber(vehicle_number).orElse(null);
+    public VehicleDetail getVehicleByNumber(String vehiclenumber) {
+        return vehicleDetailRepository.findByVehiclenumber(vehiclenumber).orElse(null);
+    }
+
+    public VehicleDetail getVehicleById(Long vehicleid) {
+        return vehicleDetailRepository.findByVehicleid(vehicleid).orElse(null);
     }
 
     public VehicleDetail saveVehicle(VehicleDetail vehicle) {
