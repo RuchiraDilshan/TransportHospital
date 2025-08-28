@@ -15,7 +15,7 @@ public class vehicle_detail_service {
     }
 
     public vehicle_detail getVehicleByNumber(String vehicle_number) {
-        return vehicleDetailRepository.findByVehicle_number(vehicle_number).orElse(null);
+        return vehicleDetailRepository.findByVehiclenumber(vehicle_number).orElse(null);
     }
 
     public vehicle_detail saveVehicle(vehicle_detail vehicle) {
