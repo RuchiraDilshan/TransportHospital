@@ -9,7 +9,7 @@ import org.springframework.stereotype.Repository;
 import com.example.TransportHospital.models.FuelDetail;
 
 @Repository
-public interface FuelDetailrepo extends JpaRepository<FuelDetail, String> {
+public interface FuelDetailRepo extends JpaRepository<FuelDetail, String> {
     List<FuelDetail> findByVehiclenumber(String vehiclenumber);
 
     Optional<FuelDetail> findByFuelid(String fuelid);
