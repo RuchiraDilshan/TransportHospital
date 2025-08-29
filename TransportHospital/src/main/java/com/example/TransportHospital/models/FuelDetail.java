@@ -15,7 +15,7 @@ import jakarta.persistence.Transient;
 import jakarta.persistence.Table;
 
 @Entity
-@Table(name = "image_detail")
+@Table(name = "fuel_detail")
 public class FuelDetail {
     @Id
     private String fuelid;
