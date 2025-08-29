@@ -1,5 +1,8 @@
 package com.example.TransportHospital.service;
 
+import java.util.List;
+import java.util.stream.Collectors;
+
 import org.springframework.stereotype.Service;
 
 import com.example.TransportHospital.models.VehicleDetail;
@@ -24,6 +27,18 @@ public class VehicleDetailService {
 
     public VehicleDetail saveVehicle(VehicleDetail vehicle) {
         return vehicleDetailRepository.save(vehicle);
+    }
+
+    public List<VehicleDetail> searchVehicleByNumber(String searchTerm) {
+        return vehicleDetailRepository.findByVehiclenumberContainingIgnoreCase(searchTerm);
+    }
+
+    public List<String> getVehicleNumberSuggestions(String searchTerm) {
+        List<VehicleDetail> vehicles = vehicleDetailRepository.findByVehiclenumberContainingIgnoreCase(searchTerm);
+        return vehicles.stream()
+                .map(VehicleDetail::getVehicleNumber)
+                .collect(Collectors.toList());
+
     }
 
 }
