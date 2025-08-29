@@ -1,7 +1,11 @@
 package com.example.TransportHospital.models;
 
+import java.time.LocalDateTime;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -21,11 +25,43 @@ public class UserDetail {
     @Column(unique = true, nullable = false)
     private String useremail;
 
+    @Enumerated(EnumType.STRING)
+    @Column(nullable = false)
+    private UserRole userrole = UserRole.ADMIN;
+
     @Column(nullable = false)
     private String userpassword;
 
     @Transient
     private String userconfirmpassword;
+
+    @Column(nullable = false)
+    private boolean isactive = true;
+
+    private LocalDateTime createdat;
+
+    private LocalDateTime lastlogin;
+
+    public enum UserRole {
+        SUPERADMIN,
+        ADMIN
+    }
+
+    public UserDetail() {
+
+    }
+
+    public UserDetail(Long userid, String username, String useremail, String userpassword,
+            UserRole userrole, Boolean isActive) {
+        super();
+        this.userid = userid;
+        this.username = username;
+        this.useremail = useremail;
+        this.userpassword = userpassword;
+        this.userrole = userrole;
+        this.isactive = isActive;
+        this.createdat = LocalDateTime.now();
+    }
 
     public Long getUserid() {
         return userid;
@@ -57,6 +93,7 @@ public class UserDetail {
 
     public void setUserpassword(String userpassword) {
         this.userpassword = userpassword;
+
     }
 
     public String getUserconfirmpassword() {
@@ -65,6 +102,38 @@ public class UserDetail {
 
     public void setUserconfirmpassword(String userconfirmpassword) {
         this.userconfirmpassword = userconfirmpassword;
+    }
+
+    public UserRole getUserrole() {
+        return userrole;
+    }
+
+    public void setUserrole(UserRole userrole) {
+        this.userrole = userrole;
+    }
+
+    public Boolean getIsActive() {
+        return isactive;
+    }
+
+    public void setIsActive(Boolean isactive) {
+        this.isactive = isactive;
+    }
+
+    public LocalDateTime getCreatedAt() {
+        return createdat;
+    }
+
+    public void setCreatedAt(LocalDateTime createdat) {
+        this.createdat = createdat;
+    }
+
+    public LocalDateTime getLastLogin() {
+        return lastlogin;
+    }
+
+    public void setLastLogin(LocalDateTime lastlogin) {
+        this.lastlogin = lastlogin;
     }
 
 }
