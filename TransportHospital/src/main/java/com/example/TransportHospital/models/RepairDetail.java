@@ -23,7 +23,7 @@ public class RepairDetail {
 
     @ManyToOne
     @JoinColumn(name = "Vehiclenumber", referencedColumnName = "Vehiclenumber", nullable = false)
-    private VehicleDetail vehiclenumber;
+    private VehicleDetail vehicle;
 
     @Enumerated(EnumType.STRING)
     private VehicleDetail.VehicleType vehicletype;
@@ -40,13 +40,13 @@ public class RepairDetail {
 
     }
 
-    public RepairDetail(Long repairid, VehicleDetail vehiclenumber, VehicleDetail.VehicleType vehicletype,
+    public RepairDetail(Long repairid, VehicleDetail vehicle, VehicleDetail.VehicleType vehicletype,
             LocalDate repairdate,
             BigDecimal mileageatrepair, BigDecimal repaircost, String repairdescription, String serviceprovider,
             String invoicenumber, String remarks) {
         super();
         this.repairid = repairid;
-        this.vehiclenumber = vehiclenumber;
+        this.vehicle = vehicle;
         this.vehicletype = vehicletype;
         this.repairdate = repairdate;
         this.mileageatrepair = mileageatrepair;
@@ -66,11 +66,11 @@ public class RepairDetail {
     }
 
     public VehicleDetail getVehiclenumber() {
-        return vehiclenumber;
+        return vehicle;
     }
 
-    public void setVehiclenumber(VehicleDetail vehiclenumber) {
-        this.vehiclenumber = vehiclenumber;
+    public void setVehiclenumber(VehicleDetail vehicle) {
+        this.vehicle = vehicle;
     }
 
     public VehicleDetail.VehicleType getVehicletype() {

@@ -22,7 +22,7 @@ public class ServiceDetail {
 
     @ManyToOne
     @JoinColumn(name = "vehiclenumber", referencedColumnName = "vehiclenumber", nullable = false)
-    private VehicleDetail vehiclenumber;
+    private VehicleDetail vehicle;
 
     @Enumerated(EnumType.STRING)
     private VehicleDetail.VehicleType vehicletype;
@@ -45,12 +45,12 @@ public class ServiceDetail {
         super();
     }
 
-    public ServiceDetail(Long serviceid, VehicleDetail vehiclenumber, VehicleDetail.VehicleType vehicletype,
+    public ServiceDetail(Long serviceid, VehicleDetail vehicle, VehicleDetail.VehicleType vehicletype,
             BigDecimal currentmileage, LocalDate sentdate, LocalDate reciveddate,
             LocalDate nextservicedate, BigDecimal nextservicemileage, BigDecimal servicecost, String comments) {
         super();
         this.serviceid = serviceid;
-        this.vehiclenumber = vehiclenumber;
+        this.vehicle = vehicle;
         this.vehicletype = vehicletype;
         this.currentmileage = currentmileage;
         this.sentdate = sentdate;
@@ -70,11 +70,11 @@ public class ServiceDetail {
     }
 
     public VehicleDetail getVehiclenumber() {
-        return vehiclenumber;
+        return vehicle;
     }
 
-    public void setVehiclenumber(VehicleDetail vehiclenumber) {
-        this.vehiclenumber = vehiclenumber;
+    public void setVehiclenumber(VehicleDetail vehicle) {
+        this.vehicle = vehicle;
     }
 
     public VehicleDetail.VehicleType getVehicletype() {

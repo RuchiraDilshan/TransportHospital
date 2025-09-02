@@ -37,7 +37,7 @@ public class DriverDetail {
 
     @ManyToOne
     @JoinColumn(name = "vehiclenumber", referencedColumnName = "vehiclenumber", nullable = true)
-    private VehicleDetail vehiclenumber;
+    private VehicleDetail vehicle;
 
     public enum Category {
         LIGHTVEHICLE,
@@ -57,7 +57,7 @@ public class DriverDetail {
     public DriverDetail(Long driverid, DriverAssistantDetail driverassistantid, String drivername,
             LocalDate dateofbirth, Category licensecategory,
             LocalDate licenseexpiredate,
-            ValidityStatus validitystatus) {
+            ValidityStatus validitystatus, VehicleDetail vehicle) {
         super();
         this.driverid = driverid;
         this.driverassistantid = driverassistantid;
@@ -66,6 +66,7 @@ public class DriverDetail {
         this.licensecategory = licensecategory;
         this.licenseexpiredate = licenseexpiredate;
         this.validitystatus = validitystatus;
+        this.vehicle = vehicle;
     }
 
     private boolean isExpired() {
@@ -119,6 +120,14 @@ public class DriverDetail {
 
     public void setValiditystatus(ValidityStatus ignored) {
 
+    }
+
+    public VehicleDetail getVehicle() {
+        return vehicle;
+    }
+
+    public void setVehicle(VehicleDetail vehicle) {
+        this.vehicle = vehicle;
     }
 
 }

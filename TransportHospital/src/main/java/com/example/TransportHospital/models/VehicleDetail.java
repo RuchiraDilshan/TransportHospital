@@ -24,9 +24,6 @@ public class VehicleDetail {
     @Column(nullable = false)
     private FuelType fueltype;
 
-    @OneToOne(mappedBy = "vehicleid", cascade = CascadeType.ALL, orphanRemoval = true)
-    private InsuranceDetail insurancedetail;
-
     public enum VehicleType {
         AMBULANCE,
         VAN,
@@ -43,36 +40,29 @@ public class VehicleDetail {
         DIESEL
     }
 
-    @PrePersist
-    private void autoCreateInsurance() {
-        if (this.insurancedetail == null) {
-            InsuranceDetail ins = new InsuranceDetail();
-            ins.setVehicleId(this);
-            ins.setVehicleType(this.vehicletype);
-            this.insurancedetail = ins;
-        }
-    }
-
     public void setVehicletype(VehicleType vehicletype) {
         this.vehicletype = vehicletype;
         if (this.insurancedetail != null)
             this.insurancedetail.setVehicleType(vehicletype);
     }
 
-    @OneToMany(mappedBy = "vehiclenumber", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "vehicle", cascade = CascadeType.ALL)
     private List<FuelDetail> fueldetail;
 
-    @OneToMany(mappedBy = "vehiclenumber", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "vehicle", cascade = CascadeType.ALL)
     private List<ServiceDetail> servicedetail;
 
-    @OneToMany(mappedBy = "vehiclenumber", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "vehicle", cascade = CascadeType.ALL)
     private List<RepairDetail> repairdetail;
 
-    @OneToOne(mappedBy = "vehiclenumber")
+    @OneToOne(mappedBy = "vehicle")
     private StatusDetail statusdetail;
 
-    @OneToMany(mappedBy = "vehiclenumber", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "vehicle", cascade = CascadeType.ALL)
     private List<ImageDetail> imagedetail;
+
+    @OneToOne(mappedBy = "vehicle", cascade = CascadeType.ALL)
+    private InsuranceDetail insurancedetail;
 
     // constructors
     public VehicleDetail() {
@@ -137,7 +127,7 @@ public class VehicleDetail {
     public void setInsurance(InsuranceDetail insurance) {
         this.insurancedetail = insurance;
         if (insurance != null) {
-            insurance.setVehicleId(this);
+            insurance.setVehicleINumber(this);
             insurance.setVehicleType(this.vehicletype);
         }
     }

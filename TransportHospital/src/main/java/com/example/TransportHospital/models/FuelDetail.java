@@ -21,8 +21,8 @@ public class FuelDetail {
     private String fuelid;
 
     @ManyToOne
-    @JoinColumn(name = "vehiclenumber", referencedColumnName = "vehiclenumber")
-    private VehicleDetail vehiclenumber;
+    @JoinColumn(name = "vehiclenumber")
+    private VehicleDetail vehicle;
 
     private LocalDate refilleddate;
     private BigDecimal refilledquantity;
@@ -37,21 +37,21 @@ public class FuelDetail {
     @PrePersist
     @PreUpdate
     private void syncFuelType() {
-        if (vehiclenumber != null)
-            this.fueltype = vehiclenumber.getFuelType();
+        if (vehicle != null)
+            this.fueltype = vehicle.getFuelType();
     }
 
     public FuelDetail() {
 
     }
 
-    public FuelDetail(String fuelid, VehicleDetail vehiclenumber,
+    public FuelDetail(String fuelid, VehicleDetail vehicle,
             LocalDate refilleddate,
             BigDecimal refilledquantity, BigDecimal refillcost, BigDecimal fuelprice, VehicleDetail.FuelType fueltype,
             BigDecimal odometerreading) {
 
         this.fuelid = fuelid;
-        this.vehiclenumber = vehiclenumber;
+        this.vehicle = vehicle;
         this.refilleddate = refilleddate;
         this.refilledquantity = refilledquantity;
         this.refillcost = refillcost;
@@ -68,12 +68,12 @@ public class FuelDetail {
         this.fuelid = fuelid;
     }
 
-    public VehicleDetail getVehicleNumber() {
-        return vehiclenumber;
+    public VehicleDetail getVehicle() {
+        return vehicle;
     }
 
-    public void setVehiclenumber(VehicleDetail vehiclenumber) {
-        this.vehiclenumber = vehiclenumber;
+    public void setVehicle(VehicleDetail vehicle) {
+        this.vehicle = vehicle;
     }
 
     public LocalDate getRefilleddate() {
@@ -125,8 +125,8 @@ public class FuelDetail {
     }
 
     @Transient
-    public String getVehiclenumber() {
-        return vehiclenumber != null ? vehiclenumber.getVehicleNumber() : null;
+    public String getVehicleNumberString() {
+        return vehicle != null ? vehicle.getVehicleNumber() : null;
     }
 
 }

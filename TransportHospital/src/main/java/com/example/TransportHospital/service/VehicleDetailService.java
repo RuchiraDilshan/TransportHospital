@@ -41,4 +41,25 @@ public class VehicleDetailService {
 
     }
 
+    // to update vehicle details
+
+    public VehicleDetail updateVehicle(Long vehicleid, VehicleDetail updatedVehicle) {
+        VehicleDetail existingVehicle = vehicleDetailRepository.findById(vehicleid)
+                .orElseThrow(() -> new RuntimeException("Vehicle not found"));
+
+        existingVehicle.setVehicleNumber(updatedVehicle.getVehicleNumber());
+        existingVehicle.setVehicleType(updatedVehicle.getVehicleType());
+        existingVehicle.setMake(updatedVehicle.getMake());
+        existingVehicle.setFuelType(updatedVehicle.getFuelType());
+
+        return vehicleDetailRepository.save(existingVehicle);
+    }
+
+    // to delete vehicle
+
+    public void deleteVehicle(Long vehicleid) {
+        VehicleDetail vehicle = vehicleDetailRepository.findById(vehicleid)
+                .orElseThrow(() -> new RuntimeException("Vehicle not found"));
+        vehicleDetailRepository.delete(vehicle);
+    }
 }

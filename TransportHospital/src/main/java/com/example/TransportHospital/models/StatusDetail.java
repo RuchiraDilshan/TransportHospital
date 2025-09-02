@@ -21,7 +21,7 @@ public class StatusDetail {
 
     @ManyToOne
     @JoinColumn(name = "vehiclenumber", referencedColumnName = "vehiclenumber", nullable = false)
-    private VehicleDetail vehiclenumber;
+    private VehicleDetail vehicle;
 
     @Enumerated(EnumType.STRING)
     private VehicleDetail.VehicleType vehicletype;
@@ -37,19 +37,19 @@ public class StatusDetail {
     @PrePersist
     @PreUpdate
     private void syncVehicleType() {
-        if (vehiclenumber != null)
-            this.vehicletype = vehiclenumber.getVehicleType();
+        if (vehicle != null)
+            this.vehicletype = vehicle.getVehicleType();
     }
 
     public StatusDetail() {
         super();
     }
 
-    public StatusDetail(Long statusid, VehicleDetail vehiclenumber, VehicleDetail.VehicleType vehicletype,
+    public StatusDetail(Long statusid, VehicleDetail vehicle, VehicleDetail.VehicleType vehicletype,
             vehiclestatus vehiclestatus) {
         super();
         this.statusid = statusid;
-        this.vehiclenumber = vehiclenumber;
+        this.vehicle = vehicle;
         this.vehicletype = vehicletype;
         this.vehiclestatus = vehiclestatus;
     }
@@ -62,12 +62,12 @@ public class StatusDetail {
         this.statusid = statusid;
     }
 
-    public VehicleDetail getVehiclenumber() {
-        return vehiclenumber;
+    public VehicleDetail getVehicle() {
+        return vehicle;
     }
 
-    public void setVehiclenumber(VehicleDetail vehiclenumber) {
-        this.vehiclenumber = vehiclenumber;
+    public void setVehicle(VehicleDetail vehicle) {
+        this.vehicle = vehicle;
     }
 
     public VehicleDetail.VehicleType getVehicletype() {
