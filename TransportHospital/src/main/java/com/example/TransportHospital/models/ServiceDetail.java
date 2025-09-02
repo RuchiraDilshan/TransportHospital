@@ -3,12 +3,11 @@ package com.example.TransportHospital.models;
 import java.math.BigDecimal;
 import java.time.LocalDate;
 
-
-
-import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
@@ -18,8 +17,8 @@ import jakarta.persistence.Table;
 @Table(name = "service_detail")
 public class ServiceDetail {
     @Id
-    @Column(unique = true, nullable = false)
-    private String serviceid;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long serviceid;
 
     @ManyToOne
     @JoinColumn(name = "vehiclenumber", referencedColumnName = "vehiclenumber", nullable = false)
@@ -27,8 +26,6 @@ public class ServiceDetail {
 
     @Enumerated(EnumType.STRING)
     private VehicleDetail.VehicleType vehicletype;
-
-    private LocalDate lastservicedate;
 
     private BigDecimal currentmileage;
 
@@ -48,14 +45,13 @@ public class ServiceDetail {
         super();
     }
 
-    public ServiceDetail(String serviceid, VehicleDetail vehiclenumber, VehicleDetail.VehicleType vehicletype,
-            LocalDate lastservicedate, BigDecimal currentmileage, LocalDate sentdate, LocalDate reciveddate,
+    public ServiceDetail(Long serviceid, VehicleDetail vehiclenumber, VehicleDetail.VehicleType vehicletype,
+            BigDecimal currentmileage, LocalDate sentdate, LocalDate reciveddate,
             LocalDate nextservicedate, BigDecimal nextservicemileage, BigDecimal servicecost, String comments) {
         super();
         this.serviceid = serviceid;
         this.vehiclenumber = vehiclenumber;
         this.vehicletype = vehicletype;
-        this.lastservicedate = lastservicedate;
         this.currentmileage = currentmileage;
         this.sentdate = sentdate;
         this.reciveddate = reciveddate;
@@ -65,11 +61,11 @@ public class ServiceDetail {
         this.comments = comments;
     }
 
-    public String getServiceid() {
+    public Long getServiceid() {
         return serviceid;
     }
 
-    public void setServiceid(String serviceid) {
+    public void setServiceid(Long serviceid) {
         this.serviceid = serviceid;
     }
 
@@ -87,14 +83,6 @@ public class ServiceDetail {
 
     public void setVehicletype(VehicleDetail.VehicleType vehicletype) {
         this.vehicletype = vehicletype;
-    }
-
-    public LocalDate getLastservicedate() {
-        return lastservicedate;
-    }
-
-    public void setLastservicedate(LocalDate lastservicedate) {
-        this.lastservicedate = lastservicedate;
     }
 
     public BigDecimal getCurrentmileage() {

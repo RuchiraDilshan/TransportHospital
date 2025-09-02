@@ -15,19 +15,17 @@ public class VehicleDetail {
     private String vehiclenumber;
 
     @Enumerated(EnumType.STRING)
+    @Column(nullable = false)
     private VehicleType vehicletype;
 
     private String make;
 
     @Enumerated(EnumType.STRING)
+    @Column(nullable = false)
     private FuelType fueltype;
 
     @OneToOne(mappedBy = "vehicleid", cascade = CascadeType.ALL, orphanRemoval = true)
     private InsuranceDetail insurancedetail;
-
-    @ManyToOne
-    @JoinColumn(name = "driverid", referencedColumnName = "driverid", nullable = false)
-    private DriverDetail driverid;
 
     public enum VehicleType {
         AMBULANCE,
@@ -76,6 +74,7 @@ public class VehicleDetail {
     @OneToMany(mappedBy = "vehiclenumber", cascade = CascadeType.ALL)
     private List<ImageDetail> imagedetail;
 
+    // constructors
     public VehicleDetail() {
 
     }
@@ -90,6 +89,7 @@ public class VehicleDetail {
         this.make = make;
     }
 
+    // Getters and Setters
     public Long getVehicleId() {
         return vehicleid;
     }
@@ -140,6 +140,12 @@ public class VehicleDetail {
             insurance.setVehicleId(this);
             insurance.setVehicleType(this.vehicletype);
         }
+    }
+
+    @Override
+    public String toString() {
+        return "VehicleDetail [vehicleid=" + vehicleid + ", vehiclenumber=" + vehiclenumber + ", vehicletype="
+                + vehicletype + ", make=" + make + ", fueltype=" + fueltype + "]";
     }
 
 }

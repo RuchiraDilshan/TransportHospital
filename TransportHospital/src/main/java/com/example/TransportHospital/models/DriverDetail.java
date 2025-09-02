@@ -2,7 +2,6 @@ package com.example.TransportHospital.models;
 
 import java.time.LocalDate;
 
-import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
@@ -19,14 +18,13 @@ public class DriverDetail {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long driverid;
+
     @ManyToOne
     @JoinColumn(name = "driverassistantid", referencedColumnName = "driverassistantid", nullable = false)
     private DriverAssistantDetail driverassistantid;
 
     private String drivername;
 
-    @Column(unique = true, nullable = true)
-    private String driverlicensenumber;
     private LocalDate dateofbirth;
 
     @Enumerated(EnumType.STRING)
@@ -36,6 +34,10 @@ public class DriverDetail {
 
     @Enumerated(EnumType.STRING)
     private ValidityStatus validitystatus;
+
+    @ManyToOne
+    @JoinColumn(name = "vehiclenumber", referencedColumnName = "vehiclenumber", nullable = true)
+    private VehicleDetail vehiclenumber;
 
     public enum Category {
         LIGHTVEHICLE,
@@ -53,14 +55,13 @@ public class DriverDetail {
     }
 
     public DriverDetail(Long driverid, DriverAssistantDetail driverassistantid, String drivername,
-            String driverlicensenumber, LocalDate dateofbirth, Category licensecategory,
+            LocalDate dateofbirth, Category licensecategory,
             LocalDate licenseexpiredate,
             ValidityStatus validitystatus) {
         super();
         this.driverid = driverid;
         this.driverassistantid = driverassistantid;
         this.drivername = drivername;
-        this.driverlicensenumber = driverlicensenumber;
         this.dateofbirth = dateofbirth;
         this.licensecategory = licensecategory;
         this.licenseexpiredate = licenseexpiredate;
@@ -93,14 +94,6 @@ public class DriverDetail {
 
     public void setDrivername(String drivername) {
         this.drivername = drivername;
-    }
-
-    public String getDriverlicensenumber() {
-        return driverlicensenumber;
-    }
-
-    public void setDriverlicensenumber(String driverlicensenumber) {
-        this.driverlicensenumber = driverlicensenumber;
     }
 
     public LocalDate getDateofbirth() {
