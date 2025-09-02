@@ -52,7 +52,7 @@ public class VehicleDetailController {
 
     }
 
-    @PutMapping("/id/{vehicleId}")
+    @PutMapping("/{vehicleId}")
     public ResponseEntity<VehicleDetail> updateVehicle(
             @PathVariable Long vehicleId,
             @RequestBody VehicleDetailDto dto) {
@@ -72,7 +72,7 @@ public class VehicleDetailController {
         }
     }
 
-    @DeleteMapping("/id/{vehicleId}")
+    @DeleteMapping("/{vehicleId}")
     public ResponseEntity<Void> deleteVehicle(@PathVariable Long vehicleId) {
         try {
             vehicleDetailService.deleteVehicle(vehicleId);
