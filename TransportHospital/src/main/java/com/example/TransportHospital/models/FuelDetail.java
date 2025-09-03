@@ -6,6 +6,8 @@ import java.time.LocalDate;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
@@ -18,7 +20,8 @@ import jakarta.persistence.Table;
 @Table(name = "fuel_detail")
 public class FuelDetail {
     @Id
-    private String fuelid;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long fuelid;
 
     @ManyToOne
     @JoinColumn(name = "vehiclenumber")
@@ -45,7 +48,7 @@ public class FuelDetail {
 
     }
 
-    public FuelDetail(String fuelid, VehicleDetail vehicle,
+    public FuelDetail(Long fuelid, VehicleDetail vehicle,
             LocalDate refilleddate,
             BigDecimal refilledquantity, BigDecimal refillcost, BigDecimal fuelprice, VehicleDetail.FuelType fueltype,
             BigDecimal odometerreading) {
@@ -60,11 +63,11 @@ public class FuelDetail {
         this.odometerreading = odometerreading;
     }
 
-    public String getFuelid() {
+    public Long getFuelid() {
         return fuelid;
     }
 
-    public void setFuelid(String fuelid) {
+    public void setFuelid(Long fuelid) {
         this.fuelid = fuelid;
     }
 
