@@ -3,7 +3,9 @@ package com.example.TransportHospital.service;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
+import org.springframework.web.server.ResponseStatusException;
 
 import com.example.TransportHospital.models.VehicleDetail;
 import com.example.TransportHospital.repository.VehicleDetailRepo;
@@ -18,11 +20,17 @@ public class VehicleDetailService {
     }
 
     public VehicleDetail getVehicleByNumber(String vehiclenumber) {
-        return vehicleDetailRepository.findByVehiclenumber(vehiclenumber).orElse(null);
+        return vehicleDetailRepository.findByVehiclenumber(vehiclenumber)
+                .orElseThrow(() -> new ResponseStatusException(
+                        HttpStatus.NOT_FOUND,
+                        "Vehicle not found with number: " + vehiclenumber));
     }
 
     public VehicleDetail getVehicleById(Long vehicleid) {
-        return vehicleDetailRepository.findByVehicleid(vehicleid).orElse(null);
+        return vehicleDetailRepository.findByVehicleid(vehicleid)
+                .orElseThrow(() -> new ResponseStatusException(
+                        HttpStatus.NOT_FOUND,
+                        "Vehicle not found with id: " + vehicleid));
     }
 
     public VehicleDetail saveVehicle(VehicleDetail vehicle) {
@@ -45,7 +53,9 @@ public class VehicleDetailService {
 
     public VehicleDetail updateVehicle(Long vehicleid, VehicleDetail updatedVehicle) {
         VehicleDetail existingVehicle = vehicleDetailRepository.findById(vehicleid)
-                .orElseThrow(() -> new RuntimeException("Vehicle not found"));
+                .orElseThrow(() -> new ResponseStatusException(
+                        HttpStatus.NOT_FOUND,
+                        "Vehicle not found with id: " + vehicleid));
 
         existingVehicle.setVehicleNumber(updatedVehicle.getVehicleNumber());
         existingVehicle.setVehicleType(updatedVehicle.getVehicleType());
@@ -59,7 +69,9 @@ public class VehicleDetailService {
 
     public void deleteVehicle(Long vehicleid) {
         VehicleDetail vehicle = vehicleDetailRepository.findById(vehicleid)
-                .orElseThrow(() -> new RuntimeException("Vehicle not found"));
+                .orElseThrow(() -> new ResponseStatusException(
+                        HttpStatus.NOT_FOUND,
+                        "Vehicle not found with id: " + vehicleid));
         vehicleDetailRepository.delete(vehicle);
     }
 }
