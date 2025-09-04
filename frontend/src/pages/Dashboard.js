@@ -2,7 +2,7 @@ import React from 'react';
 import { Box, Typography, Paper } from '@mui/material';
 import  Grid  from '@mui/material/Grid'; // Correct import for v7
 
-const Dashboard: React.FC = () => {
+const Dashboard = () => {
   return (
     <Box>
       <Typography variant="h4" gutterBottom>

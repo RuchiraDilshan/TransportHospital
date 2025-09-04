@@ -19,6 +19,10 @@ public class VehicleDetailService {
         this.vehicleDetailRepository = vehicleDetailRepository;
     }
 
+    public List<VehicleDetail> getAllVehicles() {
+        return vehicleDetailRepository.findAll();
+    }
+
     public VehicleDetail getVehicleByNumber(String vehiclenumber) {
         return vehicleDetailRepository.findByVehiclenumber(vehiclenumber)
                 .orElseThrow(() -> new ResponseStatusException(

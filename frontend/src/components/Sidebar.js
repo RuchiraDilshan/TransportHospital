@@ -23,7 +23,7 @@ const sidebarItems = [
     path: '/' 
   },
   { 
-    text: 'Vehicle Register', 
+    text: 'Vehicle Record', 
     icon: <DirectionsCarIcon />, 
     path: '/vehicles' 
   },
@@ -34,7 +34,7 @@ const sidebarItems = [
   },
 ];
 
-const Sidebar: React.FC = () => {
+const Sidebar = () => {
   const navigate = useNavigate();
   const location = useLocation();
   const theme = useTheme();
@@ -65,7 +65,7 @@ const Sidebar: React.FC = () => {
         }}
       >
         <Typography variant="h6" sx={{ color: 'white', fontWeight: 'bold' }}>
-          🚑 Transport Hospital
+          🚑 National Hospital Kandy
         </Typography>
         <Typography variant="body2" sx={{ color: '#bdc3c7', mt: 1 }}>
           Vehicle Management
@@ -107,7 +107,7 @@ const Sidebar: React.FC = () => {
       {/* Footer */}
       <Box sx={{ mt: 'auto', p: 2, textAlign: 'center', borderTop: '1px solid rgba(255,255,255,0.1)' }}>
         <Typography variant="caption" sx={{ color: '#95a5a6' }}>
-          Transport System v1.0
+          Copyright © 2025 NHK
         </Typography>
       </Box>
     </Drawer>
