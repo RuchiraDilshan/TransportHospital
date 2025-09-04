@@ -16,6 +16,7 @@ function App() {
             <Route path="/" element={<Dashboard />} />
             <Route path="/vehicles" element={<VehicleRecord />} />
             <Route path="/fuel" element={<FuelRecords />} />
+            
           </Routes>
         </Box>
       </Box>

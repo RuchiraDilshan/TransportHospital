@@ -1,8 +1,12 @@
 import React from 'react';
-import { Box, Typography, Paper } from '@mui/material';
+import { Box, Typography, Paper,CircularProgress } from '@mui/material';
+
 import  Grid  from '@mui/material/Grid'; // Correct import for v7
 
+
 const Dashboard = () => {
+
+  // Fetch vehicle data from VehicleRecords component or API
   return (
     <Box>
       <Typography variant="h4" gutterBottom>
@@ -16,7 +20,7 @@ const Dashboard = () => {
         <Grid size={{ xs: 12, sm: 6, md: 6 }}>
           <Paper sx={{ p: 3, textAlign: 'center' }}>
             <Typography variant="h6">Total Vehicles</Typography>
-            <Typography variant="h4" color="primary">0</Typography>
+            <Typography variant="h4" color="primary">10</Typography>
           </Paper>
         </Grid>
         <Grid size={{ xs: 12, sm: 6, md: 6 }}>

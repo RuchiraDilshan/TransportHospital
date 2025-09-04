@@ -1,13 +1,14 @@
 import React, { useState, useEffect } from 'react';
 import {
   Box, Typography, Paper, Grid, CircularProgress, Alert,
-  Table, TableBody, TableCell, TableContainer, TableHead, TableRow
+  Table, TableBody, TableCell, TableContainer, TableHead, TableRow,TextField
 } from '@mui/material';
 
 const VehicleRecords = () => {
   const [vehicles, setVehicles] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState(null);
+  const [searchQuery, setSearchQuery] = useState('');
 
   useEffect(() => {
     const fetchVehicles = async () => {
@@ -51,11 +52,28 @@ const VehicleRecords = () => {
     );
   }
 
+
+  const filteredVehicles = vehicles.filter((vehicle) =>
+  vehicle.vehicleNumber.toLowerCase().includes(searchQuery.toLowerCase())
+);
+
   return (
     <Box>
       <Typography variant="h4" gutterBottom>
         Vehicle Records
       </Typography>
+
+      {/* ---  SEARCH BAR  --- */}
+      <Box sx={{ display: 'flex', justifyContent: 'flex-end', mb: 2 }}>
+      <TextField
+        size="small"
+        placeholder="Search vehicles..."
+        variant="outlined"
+        value={searchQuery}
+        onChange={(e) => setSearchQuery(e.target.value)}
+        sx={{ width: 250 }}
+      />
+    </Box>
 
       {/* --- Vehicle Count Grid --- */}
       <Grid container spacing={3} sx={{ mb: 4 }}>
@@ -96,7 +114,8 @@ const VehicleRecords = () => {
             </TableRow>
           </TableHead>
           <TableBody>
-            {vehicles.map((vehicle) => (
+            {filteredVehicles.length > 0 ? (
+              filteredVehicles.map((vehicle) => (
               <TableRow
                 key={vehicle.id} // Assuming your VehicleDetail has an 'id' field
                 sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
@@ -108,7 +127,15 @@ const VehicleRecords = () => {
                 <TableCell>{vehicle.make}</TableCell>
                 <TableCell>{vehicle.fuelType}</TableCell>
               </TableRow>
-            ))}
+            ))
+          ) : (
+            <TableRow>
+              <TableCell colSpan={4} align="center">
+                    No vehicles found matching your search.
+              </TableCell>
+            </TableRow>
+
+          )}
           </TableBody>
         </Table>
       </TableContainer>
